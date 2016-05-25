@@ -30,17 +30,18 @@ node.normal['wordpress']['salt']['logged_in'] = secure_password unless node['wor
 node.normal['wordpress']['salt']['nonce'] = secure_password unless node['wordpress']['salt']['nonce']
 node.save unless Chef::Config[:solo]
 
-directory node['wordpress']['dir'] do
-  action :create
-  recursive true
-  if platform_family?('windows')
-    rights :read, 'Everyone'
-  else
-    owner node['wordpress']['install']['user']
-    group node['wordpress']['install']['group']
-    mode  '00755'
-  end
-end
+# XXX I don't have a good solution for this
+#directory node['wordpress']['dir'] do
+#  action :create
+#  recursive true
+#  if platform_family?('windows')
+#    rights :read, 'Everyone'
+#  else
+#    owner node['wordpress']['install']['user']
+#    group node['wordpress']['install']['group']
+#    mode  '00755'
+#  end
+#end
 
 archive = platform_family?('windows') ? 'wordpress.zip' : 'wordpress.tar.gz'
 

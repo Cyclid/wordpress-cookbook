@@ -36,8 +36,8 @@ end
 
 include_recipe "php::module_mysql"
 
-node.normal['nginx']['default_site_enabled'] = false unless node['nginx']['default_site_enabled']
-include_recipe "nginx"
+node.normal['nginx']['default_site_enabled'] = false
+include_recipe "chef_nginx"
 
 include_recipe "wordpress::app"
 
@@ -58,5 +58,5 @@ end
 file File.join(node['nginx']['dir'], 'conf.d', 'default.conf') do
   action :delete
   notifies :reload, 'service[nginx]'
-  only_if { node['platform_family'] == 'rhel' && !node['nginx']['default_site_enabled'] }
+  only_if { !node['nginx']['default_site_enabled'] }
 end

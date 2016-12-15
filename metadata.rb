@@ -4,7 +4,7 @@ maintainer_email "cookbooks@opscode.com"
 license          "Apache 2.0"
 description      "Installs/Configures WordPress"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "3.0.0"
+version          "3.1.0"
 
 recipe "WordPress", "Installs and configures WordPress LAMP stack on a single system"
 recipe "WordPress::languages", "Install WordPress translation files"
@@ -20,7 +20,7 @@ depends "mysql2_chef_gem", "~> 1.0.1"
 depends "build-essential"
 depends "iis", ">= 1.6.2"
 depends "tar", ">= 0.3.1"
-depends "nginx", "~> 2.7.4"
+depends "chef_nginx", "~> 5.0.1"
 depends "php-fpm", "~> 0.6.10"
 depends 'selinux', '~> 0.7'
 
